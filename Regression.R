@@ -1,5 +1,9 @@
 # Regression
 
+y <- sample(1:20, 30, replace=TRUE)
+
+x <- sample(1:20, 30, replace=TRUE)
+
 regress <- function(y, x) {
   
   dataset <- data.frame(y, x)
@@ -22,8 +26,14 @@ regress <- function(y, x) {
   slope <- numerator / denominator
   intercept <- meanY - slope * meanX 
   
-  return(list(intercept, slope))
+  return(list("intercept" = intercept, "slope" = slope))
+
 }
 
-regress(Maastricht, DeBilt)
+regress(y, x)
+
+# Test and compare output with standard lm()
+
+test <- lm(y~x)
+summary(test)
 
